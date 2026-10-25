@@ -174,3 +174,4 @@ Los entornos de lavandería presentan un alto índice de humedad y severo ruido 
    - Repita la secuencia completa activando Sensor 2 y verificando el bloqueo de Sensor 1.
 6. **Test de Timeout de Atasco:**
    - Mantenga bloqueado Sensor 1 por > 60 s: Verifique apagado automático del motor y destello del LED de alarma en A2.
+# Succionador-lavanderia-arduino
