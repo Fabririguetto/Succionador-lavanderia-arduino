@@ -1,10 +1,11 @@
 # Controlador de Doble Compuerta para Succionadora de Lavandería Industrial
 
-[![Arduino Uno / Nano Compatible](https://img.shields.io/badge/Platform-Arduino%20Uno%20%7C%20Nano-blue.svg)](https://www.arduino.cc/)
+[![Arduino Mega 2560](https://img.shields.io/badge/Platform-Arduino%20Mega%202560-blue.svg)](https://www.arduino.cc/)
+[![ATmega2560](https://img.shields.io/badge/MCU-ATmega2560%20%40%2016MHz-blueviolet.svg)]()
 [![C++11](https://img.shields.io/badge/Language-C%2B%2B11-orange.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)]()
 
-Firmware industrial en C++ desarrollado para microcontroladores **Microchip ATmega328P (Arduino Uno / Nano)** que gestiona la automatización y el enclavamiento mutuo (*interlock*) de un sistema de doble compuerta de aspiración en túneles/ductos de transporte neumático para lavanderías industriales.
+Firmware industrial en C++ desarrollado específicamente para microcontroladores **Microchip ATmega2560 (Arduino Mega 2560)** (retrocompatible con Uno / Nano) que gestiona la automatización y el enclavamiento mutuo (*interlock*) de un sistema de doble compuerta de aspiración en túneles/ductos de transporte neumático para lavanderías industriales.
 
 ---
 
@@ -129,8 +130,8 @@ succionadora-industrial-arduino/
 ## ⚙️ Instalación y Configuración
 
 1. Abra la carpeta `succionadora-industrial-arduino` en el **Arduino IDE** (v1.8.x o v2.x).
-2. Seleccione la placa: **Tools -> Board -> Arduino AVR Boards -> Arduino Uno** (o Nano).
-3. Seleccione el procesador si usa Nano: **Tools -> Processor -> ATmega328P** (Old Bootloader o regular).
+2. Seleccione la placa: **Tools -> Board -> Arduino AVR Boards -> Arduino Mega or Mega 2560**.
+3. Seleccione el procesador: **Tools -> Processor -> ATmega2560 (Mega 2560)**.
 4. Ajuste los parámetros deseados en [Config.h](file:///C:/Users/fabri/Desktop/proyectos/succionadora-industrial-arduino/Config.h):
    ```cpp
    // Seleccione tipo de actuador

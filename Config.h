@@ -3,7 +3,8 @@
  * PROYECTO: CONTROLADOR DE DOBLE COMPUERTA PARA SUCCIONADORA INDUSTRIAL
  * ARCHIVO: Config.h
  * AUTOR: Experto en Firmware Embebido & Automatización Industrial
- * COMPATIBILIDAD: Arduino Uno / Nano (Microchip ATmega328P @ 16 MHz, 5V)
+ * COMPATIBILIDAD: Arduino Mega 2560 (Microchip ATmega2560 @ 16 MHz, 5V)
+ *                 (Retrocompatible con Arduino Uno / Nano ATmega328P)
  * ==============================================================================
  * Descripción:
  * Definiciones de hardware, pines, mapeo lógico, tiempos de ciclo,
@@ -29,21 +30,22 @@
 // 2. DEFINICIÓN DE PINES DE HARDWARE (PINOUT)
 // ==============================================================================
 // Entradas digitales (Sensores de proximidad fotoeléctricos/inductivos)
-const uint8_t PIN_SENSOR_1          = 2;  // Sensor compuerta 1 (Capaz de INT0)
-const uint8_t PIN_SENSOR_2          = 3;  // Sensor compuerta 2 (Capaz de INT1)
+// En Arduino Mega 2560: Pin 2 es INT4 (PE4), Pin 3 es INT5 (PE5)
+const uint8_t PIN_SENSOR_1          = 2;  // Sensor compuerta 1
+const uint8_t PIN_SENSOR_2          = 3;  // Sensor compuerta 2
 
 // Salida de potencia principal
 const uint8_t PIN_RELAY_MOTOR       = 4;  // Relé contactor motor succión (Active LOW)
 
-// Salidas de control para actuadores de compuerta
-const uint8_t PIN_ACTUATOR_GATE_1   = 5;  // Válvula 1 / Señal PWM Servo 1 (Timer3/OC0B)
-const uint8_t PIN_ACTUATOR_GATE_2   = 6;  // Válvula 2 / Señal PWM Servo 2 (Timer0/OC0A)
+// Salidas de control para actuadores de compuerta (Pines PWM en Mega 2560)
+const uint8_t PIN_ACTUATOR_GATE_1   = 5;  // Válvula 1 / PWM Servo 1 (Timer 3 en Mega)
+const uint8_t PIN_ACTUATOR_GATE_2   = 6;  // Válvula 2 / PWM Servo 2 (Timer 4 en Mega)
 
-// Indicadores luminosos de estado (Opcionales para tablero o diagnóstico)
-const uint8_t PIN_LED_HEARTBEAT     = 13; // LED integrado de Arduino (latido / WDT)
-const uint8_t PIN_LED_GATE_1        = A0; // Indicador óptico Compuerta 1 activa
-const uint8_t PIN_LED_GATE_2        = A1; // Indicador óptico Compuerta 2 activa
-const uint8_t PIN_LED_ALARM         = A2; // Indicador óptico de falla / bloqueo
+// Indicadores luminosos de estado (Tablero de mando o diagnóstico)
+const uint8_t PIN_LED_HEARTBEAT     = 13; // LED integrado de Arduino Mega (PB7)
+const uint8_t PIN_LED_GATE_1        = A0; // Indicador óptico Compuerta 1 activa (Pin 54)
+const uint8_t PIN_LED_GATE_2        = A1; // Indicador óptico Compuerta 2 activa (Pin 55)
+const uint8_t PIN_LED_ALARM         = A2; // Indicador óptico de falla / bloqueo (Pin 56)
 
 // ==============================================================================
 // 3. NIVELES LÓGICOS Y POLARIDADES (ACTIVE HIGH / ACTIVE LOW)

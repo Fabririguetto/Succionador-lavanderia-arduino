@@ -2,7 +2,8 @@
  * ==============================================================================
  * PROYECTO: CONTROLADOR DE DOBLE COMPUERTA PARA SUCCIONADORA INDUSTRIAL
  * ARCHIVO PRINCIPAL: succionadora-industrial-arduino.ino
- * MICROCONTROLADOR: Arduino Uno / Nano (ATmega328P @ 16 MHz)
+ * MICROCONTROLADOR: Arduino Mega 2560 (Microchip ATmega2560 @ 16 MHz)
+ *                  (Retrocompatible con Uno / Nano ATmega328P)
  * ==============================================================================
  * SISTEMA:
  * - Sistema de extracción neumática/vacío para lavandería industrial.
@@ -11,7 +12,8 @@
  * - 1 Motor de turbina/succión de alta potencia común (relé de potencia Active LOW).
  * - Enclavamiento mutuo estricto (Interlock) por FSM no bloqueante.
  * - Temporización de post-succión (2.8s) y retardo de descompresión/sellado mecánico.
- * - Perro guardián de hardware (Watchdog Timer - WDT 2s) para inmunidad EMI.
+ * - Perro guardián de hardware (Watchdog Timer - WDT 2s) con prevención de bootloop
+ *   específica para bootloaders ATmega2560.
  * ==============================================================================
  */
 
@@ -20,6 +22,18 @@
 #include "DebouncedSensor.h"
 #include "GateActuator.h"
 #include "SuctionController.h"
+
+// ==============================================================================
+// PROTECCIÓN DE BOOTLOADER ANTE WATCHDOG EN ATmega2560 (SECCIÓN .init3)
+// ==============================================================================
+// En microcontroladores ATmega2560, si el WDT reinicia el microcontrolador,
+// el bit WDRF en MCUSR debe borrarse inmediatamente antes de la inicialización
+// de C para evitar un bucle de reinicios rápidos (bootloop infinito).
+void wdt_init(void) __attribute__((naked)) __attribute__((section(".init3")));
+void wdt_init(void) {
+    MCUSR = 0;
+    wdt_disable();
+}
 
 // ==============================================================================
 // INSTANCIACIÓN DE SUBSISTEMAS Y COMPONENTES
@@ -54,7 +68,7 @@ void setup() {
     Serial.println();
     Serial.println(F("========================================================"));
     Serial.println(F("  SISTEMA INDUSTRIAL DE SUCCIÓN - DOBLE COMPUERTA       "));
-    Serial.println(F("  Firmware v1.0.0 | Arduino ATmega328P                  "));
+    Serial.println(F("  Firmware v1.1.0 | Arduino Mega 2560 (ATmega2560)     "));
     Serial.println(F("========================================================"));
 #endif
 

@@ -84,7 +84,7 @@ Los módulos de relés de 2, 4 u 8 canales incluyen un puente extraíble (**Jump
 6. **NO CONECTE EL GND DEL ARDUINO AL GND DEL MÓDULO DE RELÉS.** De esta manera, el retorno de corriente de las bobinas inductivas no circulará por la masa del microcontrolador.
 
 ```
- ARDUINO UNO/NANO                  MÓDULO DE RELÉS OPTOACOPLADO
+ ARDUINO MEGA 2560                 MÓDULO DE RELÉS OPTOACOPLADO
  ┌───────────────┐                 ┌─────────────────────────────────┐
  │            5V ├─────────────────┤ VCC (Alimenta LEDs internos)    │
  │       PIN D4  ├─────────────────┤ IN1 (Motor Succión - Active LOW)│
